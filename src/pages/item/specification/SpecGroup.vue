@@ -45,7 +45,7 @@
 export default {
   name: "spec-group",
   props: {
-    cid: {
+    cid: {           // 接受父组件传过来的cid
       type: Number,
       default:0,
     },
@@ -64,7 +64,7 @@ export default {
     };
   },
   watch:{
-      cid(){
+      cid(){       // 监听cid，发生变化则会重新刷新数据
           this.loadData();
       }
   },
@@ -92,8 +92,9 @@ export default {
            this.$http({
             method: this.isEdit ? 'put' : 'post',
             url: '/item/spec/group',
-            data: this.group
-          }).then(() => {
+            data: this.$qs.stringify(this.group)
+            // data: this.group
+           }).then(() => {
             // 关闭窗口
             this.show = false;
             this.$message.success("保存成功！");

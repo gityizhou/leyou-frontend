@@ -154,9 +154,9 @@
         // 把oldBrand变为null
         this.oldGoods = {};
       },
-      async editGoods(oldGoods) {
+      async editGoods(oldGoods) {        // async将异步操作变成同步，如果第一步不成功则不执行后续操作
         // 发起请求，查询商品详情和skus
-        oldGoods.spuDetail = await this.$http.loadData("/item/spu/detail/" + oldGoods.id);
+        oldGoods.spuDetail = await this.$http.loadData("/item/spu/detail/" + oldGoods.id);      //get请求的同步版
         oldGoods.skus = await this.$http.loadData("/item/sku/list?id=" + oldGoods.id);
         // 修改标记
         this.isEdit = true;
